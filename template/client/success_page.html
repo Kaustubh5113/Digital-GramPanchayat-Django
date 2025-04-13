@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        /* Background overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Modal popup */
+        .popup {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup h1 {
+            color:rgb(39, 76, 188);
+            font-size: 24px;
+        }
+
+        .popup p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Button to close the popup */
+        .close-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay and popup modal -->
+    <div class="overlay" id="popup">
+        <div class="popup">
+            <h1>Thank you for your complaint!</h1>
+            <p>Your complaint has been submitted successfully.</p>
+            <button class="close-btn" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the popup
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Trigger popup display on page load (optional)
+        window.onload = function() {
+            showPopup();
+        }
+    </script>
+
+</body>
+</html>

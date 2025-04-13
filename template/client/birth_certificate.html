@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Certificate</title>
+    <link rel="shortcut icon" href="/static/media/birth-certificate.png" type="image/x-icon">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            background-color: #f5e6c8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .certificate {
+            width: 800px;
+            background: #fdf3d7;
+            padding: 40px;
+            border: 10px solid #8b5e3c;
+            text-align: center;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .header .title {
+            font-size: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #5a3e1b;
+            text-shadow: 2px 2px #d2a679;
+        }
+
+        .section {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #5a3e1b;
+        }
+
+        .person-info {
+            font-weight: bold;
+            font-family: 'Great Vibes', cursive;
+            font-size: 22px;
+        }
+
+        .certified {
+            margin-top: 30px;
+        }
+
+        .certified img {
+            width: 120px;
+            height: auto;
+        }
+
+        .print {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #8b5e3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #5a3e1b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="certificate">
+        {% for i in birth_data %}
+        <div class="header">
+            <div class="title">BIRTH CERTIFICATE</div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                This is to certify that the following data has been collected from the record
+                of Birth as filled.
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Name: {{ i.name }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Gender: {{ i.gen }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Father's Name: {{ i.f_name }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Mother's Name: {{ i.m_name }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                District: {{ i.dis_name }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Address: {{ i.p_address }}
+            </div>
+        </div>
+        <div class="certified">
+            <div class="person-info">Certified by: <img src="/static/media/sign.png" alt="not found"></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="print">
+        <button class="button" onclick="handlePrint()">Print</button>
+    </div>
+    <script>
+        const handlePrint = () => { var actContents = document.body.innerHTML; document.body.innerHTML = actContents; window.print(); }
+    </script>
+</body>
+
+</html>

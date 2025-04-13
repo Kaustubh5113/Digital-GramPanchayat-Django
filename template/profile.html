@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/profile.css">
+    <title>Grampanchayat Data</title> 
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <b>eGram Panchayat Pal</b>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'aadhar' %}">Services</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <div id="google_translate_element">Languages<img src="/static/svg/lang.svg" alt=""></div>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            const script = document.createElement('script');
+            script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,mr,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        // Ensure the widget is reinitialized on every page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGoogleTranslate();
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <h1>Grampanchayat Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Name Of Grampanchayat</td>
+                <td>Pal</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Establishment</td>
+                <td>1940</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Name Of The Constituency</td>
+                <td>Karad Uttar</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Name Of The Sarpanch</td>
+                <td>Mr.Balasaheb Shivaji Gore</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Name Of The Upa-Sarpanch</td>
+                <td>Mr.Abasaheb Narsale</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>No. Of Ward Members</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Name Of The Panchayat Secretary</td>
+                <td>Mr. Ravsahev Bhagat Danve</td>
+            </tr>
+            <tr>
+                <td rowspan="4">9</td>
+                <td rowspan="4">Name Of The Janmabhoo Mi Committee Members</td>
+                <td>Mr.Nagnath Patil</td>
+            </tr>
+            <tr>
+                <td>Mr.Tanaji Kalbhor</td>
+            </tr>
+            <tr>
+                <td>Mr.Rajaram Jadhav </td>
+            </tr>
+            <tr>
+                <td>Miss Suman Patil</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Population Of The Gram Panchayat</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Particulars</th>
+                            <th>Men</th>
+                            <th>Women</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>SC</td>
+                            <td>256</td>
+                            <td>200</td>
+                            <td>456</td>
+                        </tr>
+                        <tr>
+                            <td>ST</td>
+                            <td>356</td>
+                            <td>326</td>
+                            <td>682</td>
+                        </tr>
+                        <tr>
+                            <td>Other</td>
+                            <td>1562</td>
+                            <td>1260</td>
+                            <td>2822</td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
+                            <td>2174</td>
+                            <td>1786</td>
+                            <td>3960</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Geographical Area</td>
+                <td>2978 Acres</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>No.Of House Holds</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>SC</th>
+                            <th>ST</th>
+                            <th>Other</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>260</td>
+                            <td>100</td>
+                            <td>425</td>
+                            <td>785</td>
+                        </tr>   
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>G.P Voting Strength</td>
+                <td>1557</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>No.Of House Holds</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Antyodaya Ration Card.  (AAY)</th>
+                            <th>Non Priority Households Card. (NPH)</th>
+                            <th>Priority Households Card. (PHH)</th>
+                            <th>White Ration Card.</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>22</td>
+                            <td>48</td>
+                            <td>59</td>
+                            <td>179</td>
+                        </tr>   
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>No. Of Job Cards</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>No. Of Arogyasri Cards</td>
+                <td>288</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Income Of The G.P (2014-2015)</td>
+                <td>598288</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Expenditure Of The G.P (2014-2015)</td>
+                <td>341388</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Tax & Fees</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th></th>
+                            <th>Demand </th>
+                            <th>Collection</th>
+                            <th>writen off</th>
+                            <th>Balance </th>
+                            <th>No off Assessment</th>
+                            <th>No off Taps</th>
+                        </tr>
+                        <tr>
+                            <td>Collection Of House Tax</td>
+                            <td>170000</td>
+                            <td>160000</td>
+                            <td>1300</td>
+                            <td>Null</td>
+                            <td>356</td>
+                            <td>Null</td>
+                        </tr>   
+                        <tr>
+                            <td>Collection Of Tap Fees</td>
+                            <td>26000</td>
+                            <td>26000</td>
+                            <td>0</td>
+                            <td>Null</td>
+                            <td></td>
+                            <td>450</td>
+                        </tr>  
+                    </table>
+                </td>
+            </tr>
+        
+            <tr>
+                <td>18</td>
+                <td>No.Of Ohsr'S</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Tank No</th>
+                            <th>Capacity</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>90000 Liters</td>
+                        </tr>   
+                        <tr>
+                            <td>2</td>
+                            <td>70000 Liters</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>Number Of Tap's</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th></th>
+                            <th>SC </th>
+                            <th>ST</th>
+                            <th>Other</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>Public Taps</td>
+                            <td>0</td>
+                            <td>5</td>
+                            <td>2</td>
+                            <td>7</td>
+                        </tr>   
+                        <tr>
+                            <td>Privat Taps</td>
+                            <td>15</td>
+                            <td>20</td>
+                            <td>50</td>
+                            <td>85</td>
+                        </tr>
+                        <tr>
+                            <td>Bore well</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>    
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Number Of Internal Roads</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Perticulas</th>
+                            <th>Number </th>
+                            <th>Length</th>
+                        </tr>
+                        <tr>
+                            <td>CC Road</td>
+                            <td>14</td>
+                            <td>2570m</td>
+                        </tr>   
+                        <tr>
+                            <td>METAL Road</td>
+                            <td>3</td>
+                            <td>2000m</td>
+                        </tr>
+                        <tr>
+                            <td>GRAVEL Road</td>
+                            <td>4</td>
+                            <td>1000m</td>
+                        </tr>   
+                        <tr>
+                            <td>KACHA Road</td>
+                            <td>8</td>
+                            <td>1200m</td>
+                        </tr>  
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>No.Of Street Lights</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Perticulas</th>
+                            <th>SC </th>
+                            <th>ST</th>
+                            <th>Other</th>
+                            <th>Total</th>
+                        </tr>
+                        <tr>
+                            <td>CFL & LED</td>
+                            <td>25</td>
+                            <td>5</td>
+                            <td>70</td>
+                            <td>100</td>
+                        </tr>   
+                        <tr>
+                            <td>TUBES</td>
+                            <td>4</td>
+                            <td>18</td>
+                            <td>18</td>
+                            <td>40</td>
+                        </tr>
+                        <tr>
+                            <td>Filament Bulbs</td>
+                            <td>2</td>
+                            <td>0</td>
+                            <td>8</td>
+                            <td>10</td>
+                        </tr> 
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>No.Of Schools</td>
+                <td>
+                    <table >
+                        <tr>
+                            <th>Perticulas</th>
+                            <th>ZPHS</th>
+                            <th>High School</th>
+                        </tr>
+                        <tr>
+                            <td>No. of School</td>
+                            <td>5</td>
+                            <td>1</td>
+                        </tr>   
+                        <tr>
+                            <td>No. of Childrens</td>
+                            <td>256</td>
+                            <td>450</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>Community Halls</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>Reading Rooms</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>Gov Hospital</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td>Veterinary Hospital</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td>Banks</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>Post Office</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>Irrigated Land</td>
+                <td>2400 Hectares</td>
+            </tr>
+        </tbody>
+    </table>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Certificates</h4>
+                    <ul>
+                        <li><a href="{% url 'aadhar' %}">Birth Certificate</a></li>
+                        <li><a href="{% url 'aadhar' %}">Death Certificate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="face"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="insta"><i class="fab fa-instagram "></i></a>
+                        <a href="https://www.youtube.com/watch?v=CAeNWg2ksGw" class="linkdi"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.google.co.in/maps/place/Pali,+Maharashtra+415014/@17.4907279,74.026233,16z/data=!3m1!4b1!4m6!3m5!1s0x3bc22f55ea5e7459:0xab0673fa3d1653a0!8m2!3d17.4905349!4d74.0314811!16s%2Fg%2F1trcdwgs?entry=ttu&g_ep=EgoyMDI0MTExNy4wIKXMDSoASAFQAw%3D%3D" class="face"><i class="fa-solid fa-map"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

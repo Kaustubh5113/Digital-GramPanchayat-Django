@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style_aadhar.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <b>eGram Panchayat Pal</b>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'aadhar' %}">User</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <div id="google_translate_element">Languages<img src="/static/svg/lang.svg" alt=""></div>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            const script = document.createElement('script');
+            script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,mr,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        // Ensure the widget is reinitialized on every page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGoogleTranslate();
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <h3>Note: This page is to verify whether the user belongs to this village or not. Data is fed at the backend. For eg. use 8858184979656900</h3>
+    <div class="aadhar-info"> 
+        <form action="" method="post">
+        {% csrf_token %}
+            <label for="">Enter aadhar number</label><br>
+            <input type="number" name="aadhar" id="" placeholder="xxxx-xxxx-xxxx-xxxx" required minlength="16" maxlength="16" pattern="\d{16}" title="Enter 16 digits Aadhar Number" ><br><br>
+            <button type="submit">Search</button><br>
+        </form>
+    </div>
+</body>
+</html>

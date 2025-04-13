@@ -1,0 +1,60 @@
+.heading{
+    font-size: larger;
+    text-decoration: underline;
+}
+.abpic img {
+    height: 40%;
+    position: absolute;
+    width: 99%;
+}
+
+.mssg {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+    margin-top: -10%;
+}
+
+.text {
+    width: 60%;
+}
+
+.right img {
+    padding-top: 20%;
+    margin: 30px;
+    padding: 25% 0 0 0;
+}
+
+.text p {
+    margin: 10px;
+    font-size: 24px;
+    text-align: justify;
+}
+.text h1{
+    display: flex;
+    margin-left: 10px;
+}
+
+
+/* for lower section */
+.mssg1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* margin: 20px; */
+}
+
+.text1 {
+    width: 60%;
+    transform: translate(0%,-85%);
+    padding-left: 10%;
+}
+.text1 p {
+    /* margin: 10px; */
+    font-size: 24px;
+    text-align: justify;
+}
+.right1 img {
+   transform: translate(0%,-15%);
+}

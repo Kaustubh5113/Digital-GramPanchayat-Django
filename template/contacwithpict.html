@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        body{
+            background-color: #dddddd;
+        }
+        
+        .contact {
+            display: flex;
+            /* width: 80%; */
+            border: 1px solid black;
+            margin: 5% 10% 10% 10%;
+            height: 80vh;
+            
+        }
+        .contact img{
+            height: 80vh;
+        }
+        
+        .form_field::placeholder {
+            color: transparent;
+        }
+
+        .form_field:placeholder-shown~.form_label {
+            top: 20px;
+            font-size: 1.3rem;
+            cursor: text;
+            color: rgb(19, 20, 20);
+        }
+
+        .form_label {
+            position: absolute;
+            display: block;
+            top: 0;
+            color: black;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+
+        .form_group {
+            display: block;
+            position: relative;
+            margin: 45px 0;
+            padding: 15px 0 0;
+            width: 50%;
+
+        }
+
+        .form_field {
+            outline: 0;
+            font-size: 1.3rem;
+            width: 27rem;
+            border: 0;
+            border-bottom: 2px solid black;
+            color: rgb(54, 52, 52);
+            padding: 7px 0;
+            background: transparent;
+
+
+        }
+
+        .contact_form {
+            display: block;
+        }
+        .btn{
+            text-align: center;
+            font-size: 2rem;
+            background-color: lightblue;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Get in Touch</h1>
+    <div class="contact">
+        <div class="contact_image"><img src="/static/media/contact-form.png" alt=""></div>
+        <form action="">
+            {% csrf_token %}
+        <div class="contact_form">
+            <div class="form_group field">
+                <input type="input" class="form_field" placeholder="Name" id="name" required />
+                <label for="name" class="form_label">Name</label>
+            </div>
+            <div class="form_group field">
+                <input type="number" class="form_field" placeholder="Number" id="number" required />
+                <label for="number" class="form_label">Number</label>
+            </div>
+            <div class="form_group field">
+                <!-- <input type="textarea" class="form_field" placeholder="Message" id="message" /> -->
+                <textarea name="" class="form_field" id="message" placeholder="Message" cols="30" rows="5" required></textarea>
+
+                <label for="message" class="form_label">Message</label>
+            </div>
+            <br><br>
+            <center><button class="btn">Send</button></center>
+        </div>
+    </form>
+
+    </div>
+
+</body>
+</html>

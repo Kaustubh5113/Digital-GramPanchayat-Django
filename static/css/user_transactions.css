@@ -1,0 +1,135 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 85%;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Status Colors */
+.completed {
+    background-color: #d4edda;
+    color: #155724;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.incomplete {
+    background-color: #f8d7da;
+    color: #721c24;
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* Buttons */
+.qr-btn, .upload-btn, .download-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.qr-btn {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.qr-btn:hover {
+    background-color: #138496;
+    transform: scale(1.05);
+}
+
+.upload-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.upload-btn:hover {
+    background-color: #782188;
+    transform: scale(1.05);
+}
+
+.download-btn {
+    background-color: #85077c;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #4f209c;
+    transform: scale(1.05);
+}
+
+/* QR Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup img {
+    width: 250px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

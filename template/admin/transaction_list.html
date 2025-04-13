@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f2f5fa;">
+
+    <div class="container" style="max-width: 1200px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); animation: fadeIn 0.6s ease;">
+        <h1 class="title" style="text-align: center; color: #333; margin-bottom: 30px; font-size: 32px;">Transaction List</h1>
+
+        <form id="transaction-form" enctype="multipart/form-data">
+            <table class="transaction-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="background-color: #007bff; color: white;">
+                        <th style="padding: 12px;">Sr. No.</th>
+                        <th style="padding: 12px;">User Name</th>
+                        <th style="padding: 12px;">Amount</th>
+                        <th style="padding: 12px;">Status</th>
+                        <th style="padding: 12px;">Last Date</th>
+                        <th style="padding: 12px;">Upload Image</th>
+                        <th style="padding: 12px;">Send</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr data-id="{{ forloop.counter }}" style="background-color: #f9f9f9; transition: background-color 0.3s;">
+                        <td style="padding: 10px;">{{ forloop.counter }}</td>
+                        <td style="padding: 10px;">{{ user.username }}</td>
+                        <td style="padding: 10px;"><input type="text" name="amount" class="input-amount" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;"></td>
+                        <td style="padding: 10px;">
+                            <select name="status" class="input-status" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;">
+                                <option value="Incomplete">Incomplete</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </td>
+                        <td style="padding: 10px;"><input type="date" name="last_date" class="input-date" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;"></td>
+                        <td style="padding: 10px;"><input type="file" name="transaction_image" class="input-image" accept="image/*" style="width: 100%;"></td>
+                        <td style="padding: 10px;">
+                            <button class="send-btn" style="background-color: #28a745; color: white; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">Send</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    <!-- Common Row -->
+                    <tr style="background-color: #fff6e5;">
+                        <td colspan="2" style="padding: 12px; font-weight: bold;">Common Entry for All:</td>
+                        <td style="padding: 10px;"><input type="text" id="common-amount" placeholder="Enter Amount" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;"></td>
+                        <td style="padding: 10px;">
+                            <select id="common-status" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;">
+                                <option value="Incomplete">Incomplete</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </td>
+                        <td style="padding: 10px;"><input type="date" id="common-last-date" style="padding: 8px; width: 100%; border: 1px solid #ccc; border-radius: 6px;"></td>
+                        <td style="padding: 10px;"><input type="file" id="common-image" accept="image/*" style="width: 100%;"></td>
+                        <td style="padding: 10px;">
+                            <button id="send-all-btn" style="background-color: #007bff; color: white; padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">Send All</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .send-btn:hover,
+        #send-all-btn:hover {
+            background-color: #0056b3 !important;
+        }
+
+        tr:hover {
+            background-color: #e9f5ff !important;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            function updateAllRows() {
+                $(".input-amount").val($("#common-amount").val());
+                $(".input-status").val($("#common-status").val());
+                $(".input-date").val($("#common-last-date").val());
+            }
+
+            $("#common-amount, #common-status, #common-last-date").on("input change", updateAllRows);
+
+            function validateFields(amount, lastDate) {
+                if (!amount) {
+                    alert("Amount is required.");
+                    return false;
+                }
+                if (!lastDate) {
+                    alert("Please select a valid date.");
+                    return false;
+                }
+                return true;
+            }
+
+            $('.send-btn').click(function (event) {
+                event.preventDefault();
+
+                let row = $(this).closest("tr");
+                let userName = row.find("td:nth-child(2)").text().trim();
+                let amount = row.find(".input-amount").val();
+                let status = row.find(".input-status").val();
+                let lastDate = row.find(".input-date").val();
+                let imageFile = row.find(".input-image")[0].files[0] || $("#common-image")[0].files[0];
+
+                if (!validateFields(amount, lastDate)) return;
+
+                let formData = new FormData();
+                formData.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+                formData.append("user_name", userName);
+                formData.append("amount", amount);
+                formData.append("status", status);
+                formData.append("last_date", lastDate);
+                if (imageFile) formData.append("transaction_image", imageFile);
+
+                $.ajax({
+                    url: "{% url 'save_transaction' %}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        alert(response.success ? "Transaction stored successfully!" : "Error: " + response.message);
+                    },
+                    error: function () {
+                        alert("Failed to store transaction.");
+                    }
+                });
+            });
+
+            $('#send-all-btn').click(function (event) {
+                event.preventDefault();
+
+                let transactions = [];
+                let formData = new FormData();
+                let commonImageFile = $("#common-image")[0].files[0];
+
+                $(".transaction-table tbody tr:not(:last-child)").each(function (index) {
+                    let row = $(this);
+                    let userName = row.find("td:nth-child(2)").text().trim();
+                    let amount = row.find(".input-amount").val();
+                    let status = row.find(".input-status").val();
+                    let lastDate = row.find(".input-date").val();
+                    let imageFile = row.find(".input-image")[0].files[0] || commonImageFile;
+
+                    if (!validateFields(amount, lastDate)) return false;
+
+                    let transaction = { user_name: userName, amount: amount, status: status, last_date: lastDate };
+                    transactions.push(transaction);
+                    if (imageFile) formData.append(`transaction_image_${index + 1}`, imageFile);
+                });
+
+                formData.append("transactions", JSON.stringify(transactions));
+                formData.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+
+                $.ajax({
+                    url: "{% url 'save_transaction' %}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        alert(response.success ? `${transactions.length} transactions stored successfully!` : "Error: " + response.message);
+                        location.reload();
+                    },
+                    error: function () {
+                        alert("Failed to store transactions.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

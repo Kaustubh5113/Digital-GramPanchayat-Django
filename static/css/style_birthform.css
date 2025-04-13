@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(lightblue, #dddddd); */
+}
+
+.title,
+.onlyadditionalinfo .title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+.onlyadditionalinfo .title {
+    padding-left: 95px;
+}
+
+.container {
+    background: linear-gradient(aliceblue, #dddddd);
+    max-width: 700px;
+    width: 100%;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 1rem 1rem 1rem gray;
+    /* border: 1px solid red; */
+}
+
+form {
+    margin-top: 40px;
+
+}
+
+form .user-details .required,
+.required {
+    color: red;
+}
+
+.container form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box {
+    width: calc(100% /2 - 20px);
+
+}
+
+.user-details .input-box .details {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.user-details .input-box input,
+.onlyadditionalinfo .additional input[type="number"] {
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.gender_details {
+    padding-top: 40px;
+}
+.gender_details select{
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.placeofbirth {
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.placeofbirth select{
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+.onlyadditionalinfo .additional,
+.user-details .details {
+    line-height: 30px;
+}
+.additional select{
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 12px;
+}
+.additional .fat-edu{
+    margin-right: 15px;
+}
+.additional .mot-edu{
+    margin-right: 9px;
+}
+.additional .fat-occ{
+    margin-right: 6px;
+}
+
+form .button input {
+    height: 3rem;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, rgb(52, 96, 110), #af3131);
+
+}
+
+form .button input:hover {
+    background: linear-gradient(-135deg, rgb(53, 72, 78), #b11b1b);
+}
+
+/* To hide up and down side arrow of input type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+}

@@ -1,0 +1,48 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.certificate {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+    padding: 25px;
+    border: 2px solid #000;
+    box-shadow: 0 0 10px rgba(41, 40, 40, 0.9);
+}
+.header{
+    text-align: center;
+
+}
+.title{
+    font-size:25px;
+    font-weight: 800;
+    margin: 15px;
+    padding: 10px;
+}
+.section {
+    margin: 20px 0;
+}
+.person-info {
+    font-weight: 500;
+}
+.certified{
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+.certified img{
+    width: 8rem;
+    height: 2rem;
+}
+.button{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 16px;
+    margin-left: 45rem;
+    margin-top: 3rem;
+    cursor: pointer;
+}

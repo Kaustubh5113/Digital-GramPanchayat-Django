@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Transaction Table</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/hometax.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="title">Transaction Table</h2>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Amount</th>
+                    <th>Last Date</th>
+                    <th>Status</th>
+                    <th>Upload Screenshot</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>${{ transaction.amount }}</td>
+                    <td>{{ transaction.last_date }}</td>
+                    <td>{{ transaction.status }}</td>
+                    <td>
+                        <div class="upload-container">
+                            <form action="{% url 'upload_screenshot' transaction.id %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="file" name="screenshot" accept="image/*">
+                                <button type="submit" class="send-btn">Send</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

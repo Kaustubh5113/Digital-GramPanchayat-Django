@@ -1,0 +1,137 @@
+{% extends 'ad_wtihout_footer.html' %}
+
+{% block title %}Admin Menu{% endblock %}
+
+{% block content %}
+<div class="header">
+  <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+  <h1 class="header-heading">eGram Panchayat Services</h1>
+  <div class="img-right">
+    <a href ="https://swachhbharatmission.ddws.gov.in/"><img src="/static/media/sw.png" alt="logo" class="image"><a/>
+    <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+    <div></div>
+    <script>
+      function loadGoogleTranslate() {
+        const script = document.createElement('script');
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(script);
+      }
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGoogleTranslate();
+      });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+    </script>
+   
+  </div>
+</div>
+
+<h1>My Complaints</h1>
+<div class="comp-section">
+    <table id="complaintsTable">
+        <tr class="heading">
+            <th>S.No</th>
+            <th>Problem</th>
+            <th>Complaint Date</th>
+            <th>Status</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for i in compl_info %}
+        <tr class="complaints">
+            <td>{{ i.id }}</td>
+            <td>{{ i.compl_type }}</td>
+            <td>{{ i.date_time }}</td>
+            <td
+                class="{% if i.status == 'Pending' %}status-pending{% elif i.status == 'Complete' %}status-resolved{% elif i.status == 'In Progress' %}status-progress{% endif %}">
+                {{ i.status }}
+            </td>
+            <td>
+                <button class="delete-btn" onclick="deleteComplaint(this)">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+  function deleteComplaint(button) {
+      const row = button.parentElement.parentElement;
+      const complaintId = row.querySelector("td:first-child").textContent.trim(); // Get the complaint ID
+
+      // Show confirmation alert
+      const confirmDelete = confirm("Are you sure you want to delete this complaint?");
+      
+      if (confirmDelete) {
+          // Make an AJAX call to delete the complaint
+          fetch('/delete_complaint/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'X-CSRFToken': getCSRFToken()  // Add CSRF token
+              },
+              body: `id=${complaintId}`
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  // Remove the row from the table
+                  row.remove();
+
+                  // Update serial numbers
+                  updateSerialNumbers();
+              } else {
+                  alert(data.message);
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('An error occurred while deleting the complaint.');
+          });
+      }
+  }
+
+  function updateSerialNumbers() {
+      const table = document.getElementById("complaintsTable");
+      const rows = table.getElementsByTagName("tr");
+
+      // Start updating serial numbers from 1
+      for (let i = 1; i < rows.length; i++) {
+          const serialCell = rows[i].getElementsByTagName("td")[0];
+          serialCell.textContent = i;  // Update the serial number
+      }
+  }
+
+  // Function to retrieve the CSRF token from the cookie
+  function getCSRFToken() {
+      const name = 'csrftoken=';
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const cookies = decodedCookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i].trim();
+          if (cookie.indexOf(name) === 0) {
+              return cookie.substring(name.length, cookie.length);
+          }
+      }
+      return '';
+  }
+</script>
+
+
+
+
+{% endblock %}

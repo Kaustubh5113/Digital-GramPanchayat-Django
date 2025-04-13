@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(lightblue, #dddddd); */
+    padding-bottom:30px;
+}
+
+form {
+    margin-top: 35px;
+    border-radius: 5px;
+    box-shadow: 1rem 1rem 1rem gray;
+}
+
+.title,
+.heading {
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    background: linear-gradient(aliceblue, #dddddd);
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+
+form .input-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+form .input-box input{
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+form .input-box textarea{
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+/* form .deceased-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+} */
+.deceased-details .gender_details,.religion{
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.gender_details select{
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-bottom-width: 2px;
+    margin-left: 31%;
+}
+.religion select{
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-bottom-width: 2px;
+    margin-left: 31%;
+}
+/* form input[type="radio"]{
+    padding: 30px;
+    justify-content: space-between;
+} */
+form .button input{
+    height: 3rem;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin: 0 0 20px 0;
+    background: linear-gradient(135deg,rgb(52, 96, 110), #af3131);
+    
+}
+form .button input:hover{
+    background: linear-gradient(-135deg,rgb(53, 72, 78), #b11b1b);
+}
+
+/* To hide up and down side arrow of input type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+}

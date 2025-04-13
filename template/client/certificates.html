@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate Cards</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="/static/js/script.js" defer></script>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
+
+  <nav>
+    <div class="sidebar-header">
+      <a class="logo-wrapper">
+        <img src="/static/media/logo.png" alt="Logo">
+        <h4 class="hidden">GRAM PANCHAYAT</h4>
+      </a>
+      <button class="toggle-btn">
+        <img src="/static/svg/menu.svg" alt="expand button">
+      </button>
+    </div>
+
+
+    <div class="sidebar-links">
+      <a href="{% url 'admin_menu' %}" class="link">
+        <img src="../static/svg/house-fill.svg" alt="">
+        <span class="hidden">Home</span>
+      </a>
+      <!-- <a href="{% url 'contact' %}" class="link">
+        <img src="/static/svg/contact2.svg" alt="">
+        <span class="hidden">Contact Us</span>
+      </a> -->
+      <a href="{% url 'tax' %}" class="link">
+        <!-- <i class="bi bi-cash"></i> -->
+         <img src="../static/svg/cash.svg" alt="">
+        <span class="hidden">Tax</span>
+      </a>
+      <a href="#" class="link">
+        <!-- <i class="bi bi-calendar-event"></i> -->
+         <img src="../static/svg/calendar-event.svg" alt="">
+        <span class="hidden">Events</span>
+      </a>
+      <a href="{% url 'certificates' %}" class="link">
+        <img src="/static/svg/certificate.svg" alt="">
+        <span class="hidden">Certificates</span>
+      </a>
+      <a href="{% url 'my_cert' %}" class="link">
+        <img src="/static/svg/mycer.svg" alt="">
+        <span class="hidden">My Certificates</span>
+      </a>
+
+      <!-- </li> -->
+      <a href="{% url 'complaint' %}" class="link">
+        <img src="/static/svg/complaint.svg" alt="">
+        <span class="hidden">Complaint</span>
+      </a>
+      <a href="{% url 'my_complaint' %}" class="link">
+        <img src="/static/svg/mycomplaint.svg" alt="">
+        <span class="hidden">MyComplaints</span>
+      </a>
+
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-links">
+        <a href="{% url 'logout' %}" class="link">
+          <img src="/static/svg/logout.svg" alt="">
+          <span class="hidden">LogOut</span>
+        </a>
+      </div>
+
+      <div class="user-profile">
+        <div class="user-avatar">
+          <img src="/static/media/profile.png" alt="">
+        </div>
+        <div class="user-details hidden">
+          <p class="username">{{ request.user }}</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="header">
+    <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+    <h1 class="header-heading">eGram Panchayat Services</h1>
+    <div class="img-right">
+      <img src="/static/media/sw.png" alt="logo" class="image">
+      <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+      <div ></div>
+      <script>
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            const script = document.createElement('script');
+            script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,mr,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        // Ensure the widget is reinitialized on every page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGoogleTranslate();
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+      <!-- <img src="/static/media/flag_india.gif" alt="INDIA" class="image"> -->
+    </div>
+  </div>
+  <h1 style="text-align: center; margin: 20px 0; color: #333;">Certificates</h1>
+  <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    <!-- Card 1 -->
+    <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 20px; width: 300px; text-align: center;">
+      <img src="../static/media/birth.jpg" alt="Web Development" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">Birth Certificate</h3>
+      <p style="color: #555;">Hello,Apply for Birth Certificate</p>
+      <a href="{% url 'birth_form' %}"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Apply</button>
+      </a>
+    </div>
+    <!-- Card 2 -->
+    <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 20px; width: 300px; text-align: center;">
+      <img src="../static/media/deth.jpg" alt="Data Analysis" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">Death Certificate</h3>
+      <p style="color: #555;">Hello,Apply for Death Certificate</p>
+      <a href="{% url 'death_form' %}"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Apply</button>
+      </a>
+    </div>
+    <!-- Card 3 -->
+    {% comment %} <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 8px; padding: 20px; width: 300px; text-align: center;">
+      <img src="https://via.placeholder.com/300x150" alt="AI & ML" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">AI & Machine Learning Certificate</h3>
+      <p style="color: #555;">Dive into AI and ML concepts, including neural networks and predictive modeling.</p>
+      <button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Apply</button>
+    </div> {% endcomment %}
+  </div>
+</body>
+</html>

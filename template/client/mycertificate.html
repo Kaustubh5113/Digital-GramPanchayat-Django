@@ -1,0 +1,127 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Admin Menu{% endblock %}
+
+{% block content %}
+{% comment %} <h1>Welcome Admin</h1> {% endcomment %}
+<div class="header">
+  <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+  <h1 class="header-heading">eGram Panchayat Services</h1>
+  <div class="img-right">
+    <a href ="https://swachhbharatmission.ddws.gov.in/"><img src="/static/media/sw.png" alt="logo" class="image"><a/>
+    <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+    <div></div>
+    <script>
+      // Load the Google Translate script dynamically
+      function loadGoogleTranslate() {
+        const script = document.createElement('script');
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(script);
+      }
+
+      // Initialize the Google Translate widget
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+      }
+
+      // Ensure the widget is reinitialized on every page load
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGoogleTranslate();
+      });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+    </script>
+    <!-- <img src="/static/media/flag_india.gif" alt="INDIA" class="image"> -->
+  </div>
+</div>
+<section class="mycert-nav" style="padding: 30px 10px; background: #f5f5f5;">
+  <div class="mycert">
+    <div class="heading">
+      <h1 style="text-align: center; color: #222; font-family: 'Segoe UI', sans-serif; font-size: 2rem;">
+        <u>My Certificates</u>
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="mycert-show" style="padding: 30px 20px; background: #ffffff;">
+  <div class="cert-heading" style="font-size: 1.5rem; font-weight: 600; color: #00a884; margin-bottom: 20px; font-family: 'Segoe UI', sans-serif;">
+    Birth Certificates
+  </div>
+  {% for i in my_birth %}
+  <div class="mycertificate" style="background: #f0f0f0; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInUp 0.7s ease-in-out; transition: transform 0.3s ease;">
+    <div class="cmn" style="margin-bottom: 10px; font-weight: 500; color: #333;">Name: {{ i.name }}</div>
+    <div class="cmn" style="margin-bottom: 15px; color: #555;">Date of Issue: {{ i.date }}</div>
+    <form action="{% url 'birth_cert' %}" method="post" style="text-align: left;">
+      {% csrf_token %}
+      <input type="text" value="{{ i.id }}" name="view-certificate" hidden>
+      <button type="submit" style="background-color: #00a884; color: #fff; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">
+        View Certificate
+      </button>
+    </form>
+  </div>
+  {% endfor %}
+</section>
+
+<br><br>
+
+<section class="mycert-show" style="padding: 30px 20px; background: #ffffff;">
+  <div class="cert-heading" style="font-size: 1.5rem; font-weight: 600; color: #e63946; margin-bottom: 20px; font-family: 'Segoe UI', sans-serif;">
+    Death Certificates
+  </div>
+  {% for x in my_death %}
+  <div class="mycertificate" style="background: #fdf0f0; padding: 20px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); animation: fadeInUp 0.7s ease-in-out; transition: transform 0.3s ease;">
+    <div class="cmn" style="margin-bottom: 10px; font-weight: 500; color: #333;">Name: {{ x.deceased_name }}</div>
+    <div class="cmn" style="margin-bottom: 15px; color: #555;">Date of Issue: {{ x.date_of_issue }}</div>
+    <form action="{% url 'death_cert' %}" method="post" style="text-align: left;">
+      {% csrf_token %}
+      <input type="text" value="{{ x.id }}" name="view-certificate" hidden>
+      <button type="submit" style="background-color: #e63946; color: #fff; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 6px; cursor: pointer; transition: background-color 0.3s;">
+        View Certificate
+      </button>
+    </form>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- Animation Keyframes -->
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover Effect */
+  .mycertificate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  button:hover {
+    background-color: #00846b !important;
+  }
+
+  .mycert-show .cert-heading {
+    animation: fadeInUp 1s ease-out;
+  }
+</style>
+
+
+{% endblock %}

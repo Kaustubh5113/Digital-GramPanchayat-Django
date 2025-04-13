@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gram Panchayat</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="/static/media/village2.jpg" type="image/x-icon">
+
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <b>eGram Panchayat Pal</b>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'aadhar' %}">Services</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <div id="google_translate_element">Languages<img src="/static/svg/lang.svg" alt=""></div>
+            </ul>
+        </nav>
+    </header>
+    
+    <script>
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            const script = document.createElement('script');
+            script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,mr,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        // Ensure the widget is reinitialized on every page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGoogleTranslate();
+        });
+    </scrip>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <section class="background-pic">
+        <img src="../static/media/pali4.png" aljpeg="">
+
+    </section>
+    <section>
+
+        <div class="container">
+
+            <h1 class="heading">Government Schemes</h1>
+
+            <div class="box-container">
+                <div class="box">
+                    <img src="/static/media/lby.jpg" alt="no-image">
+                    <p>Sarva Shiksha Abhiyan, a landmark government initiative, strives to bring education to every
+                        child's doorstep, breaking barriers and illuminating the path to knowledge and empowerment.</p>
+                    <a href="https://majhiladkibahin.in/"
+                        class="btn">know more</a>
+                    <h3>Ladaki Bahin Yojana</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/s1.jpg" alt="no-image">
+                    <p>Empowering a brighter and cleaner future,the Government's solar mission aims to light up homes
+                        and businesses with suitable solar energy.</p>
+                    <a href="https://indiainvestmentgrid.gov.in/schemes/national-solar-mission" class="btn">know
+                        more</a>
+                    <h3>Solar Mission</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/ujjwala.jpg" alt="no-image">
+                    <p>Ujjwala Yojana,a transformative government initiative,brings the warmth of clean cooking to
+                        millions of households,ensuring health,dignity and a smoke-free environment. </p>
+                    <a href="https://pmuy.gov.in/" class="btn">know more</a>
+                    <h3>Pradhan Mantri Ujjwala Yojana</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/jal3.jpg" alt="no-image">
+                    <p>Jal Jeevan Mission, a visionary government scheme, quenches the thirst of rural India by
+                        providing sustainable and accessible water supply, fostering health and prosperity.</p>
+                    <a href="https://jaljeevanmission.gov.in/" class="btn">know more</a>
+                    <h3>Jal Jeevan Mission</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/study.png" alt="no-image">
+                    <p>Sarva Shiksha Abhiyan, a landmark government initiative, strives to bring education to every
+                        child's doorstep, breaking barriers and illuminating the path to knowledge and empowerment.</p>
+                    <a href="https://www.xn--i1bj3fqcyde.xn--11b7cb3a6a.xn--h2brj9c/%E0%A4%B8%E0%A4%B0%E0%A5%8D%E0%A4%B5-%E0%A4%B6%E0%A4%BF%E0%A4%95%E0%A5%8D%E0%A4%B7%E0%A4%BE-%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8-%E0%A4%95%E0%A5%80-%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%87%E0%A4%9F-%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%87%E0%A4%82"
+                        class="btn">know more</a>
+                    <h3>Sarvya Shiksha Abhiyaan</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/mnrega.jpg" alt="no-image">
+                    <p>MGNREGA, a flagship government scheme, empowers rural communities by guaranteeing employment,
+                        fostering economic stability, and building a foundation for sustainable development.</p>
+                    <a href="https://nrega.nic.in/MGNREGA_new/Nrega_home.aspx" class="btn">know more</a>
+                    <h3>MGNREGA</h3>
+                </div>
+
+                <div class="box">
+                    <img src="/static/media/sw.png" alt="no-image">
+                    <p>Swachh Bharat Abhiyan, a visionary government campaign, is a national movement towards
+                        cleanliness, aiming to create a healthier, more hygienic India through community participation
+                        and sanitation infrastructure development.</p>
+                    <a href="https://sbm.gov.in/sbm_dbt/secure/login.aspx" class="btn">know more</a>
+                    <h3>Swatch Bharat</h3>
+                </div>
+                
+
+            </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Certificates</h4>
+                    <ul>
+                        <li><a href="{% url 'aadhar' %}">Birth Certificate</a></li>
+                        <li><a href="{% url 'aadhar' %}">Death Certificate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="face"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="insta"><i class="fab fa-instagram "></i></a>
+                        <a href="https://www.youtube.com/watch?v=CAeNWg2ksGw" class="linkdi"><i
+                                class="fab fa-youtube"></i></a>
+                        <a href="https://www.google.co.in/maps/place/Pali,+Maharashtra+415014/@17.4907279,74.026233,16z/data=!3m1!4b1!4m6!3m5!1s0x3bc22f55ea5e7459:0xab0673fa3d1653a0!8m2!3d17.4905349!4d74.0314811!16s%2Fg%2F1trcdwgs?entry=ttu&g_ep=EgoyMDI0MTExNy4wIKXMDSoASAFQAw%3D%3D"
+                            class="face"><i class="fa-solid fa-map"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

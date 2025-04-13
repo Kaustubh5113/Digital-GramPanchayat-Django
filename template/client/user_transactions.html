@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Transactions</title>
+    <link rel="stylesheet" href="/static/css/user_transactions.css">
+</head>
+<body>
+
+    <h2>User Transactions</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Last Date</th>
+                <th>QR Code</th>
+                {% comment %} <th>Today's Date</th> {% endcomment %}
+                <th>Upload Screenshot</th>
+                <th>Download Receipt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr class="{% if transaction.status == 'Completed' %}completed{% elif transaction.status == 'Incomplete' %}incomplete{% endif %}">
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td class="status">{{ transaction.status }}</td>
+                <td>{{ transaction.last_date }}</td>
+                
+                <!-- QR Code Column -->
+                <td>
+                    {% if transaction.transaction_image %}
+                        <button class="qr-btn" onclick="showQRPopup('{{ transaction.transaction_image.url }}')">Scan QR</button>
+                    {% else %}
+                        No QR available
+                    {% endif %}
+                </td>
+
+                <!-- Today's Date Column (Input Field) -->
+                {% comment %} <td>
+                    <input type="date" class="date-input" onchange="validateDate(this)">
+                </td> {% endcomment %}
+
+                <!-- Upload Screenshot Column -->
+                <td>
+                    <button class="upload-btn" onclick="openUploadModal({{ transaction.id }})">Upload Screenshot</button>
+                </td>
+
+                <!-- Download Receipt Button -->
+                <td>
+                    <button class="download-btn">Download Receipt</button>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8">No transaction requests found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- QR Code Popup -->
+    <div id="qrPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="hideQRPopup()">&times;</span>
+            <img id="qrImage" src="" alt="QR Code" width="300px">
+        </div>
+    </div>
+
+    <!-- Upload Screenshot Modal -->
+    <div id="uploadModal" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h3>Upload Screenshot</h3>
+            <p>Transaction ID: <span id="transaction_id_modal"></span></p>
+            
+            <form id="uploadScreenshotForm" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" id="transaction_id_input" name="transaction_id">
+                <input type="file" name="screenshot" required>
+                {% comment %} <input type="date" class="date-input" onchange="validateDate(this)" required> {% endcomment %}
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for QR Code Popup, Upload Modal, and Date Validation -->
+    <script>
+        // Function to show QR Code popup
+        function showQRPopup(qrUrl) {
+            document.getElementById('qrImage').src = qrUrl;
+            document.getElementById('qrPopup').style.display = 'flex';
+        }
+
+        // Function to hide QR Code popup
+        function hideQRPopup() {
+            document.getElementById('qrPopup').style.display = 'none';
+        }
+
+        // Function to validate if selected date is today
+        function validateDate(input) {
+            const selectedDate = new Date(input.value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate.getTime() !== today.getTime()) {
+                alert("Please select today's date.");
+                input.value = ""; // Reset the date input
+            }
+        }
+
+        // Function to open the upload modal
+        function openUploadModal(transactionId) {
+            document.getElementById('uploadModal').style.display = "block";
+            document.getElementById('transaction_id_modal').textContent = transactionId;
+            document.getElementById('transaction_id_input').value = transactionId;
+        }
+
+        // Function to close the upload modal
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = "none";
+        }
+
+        // Submit form via AJAX to store data without page reload
+        document.getElementById('uploadScreenshotForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const transactionId = document.getElementById('transaction_id_input').value;
+            const formData = new FormData(this);
+
+            fetch(`/upload_screenshot/${transactionId}/`, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                closeUploadModal();
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+
+</body>
+</html>

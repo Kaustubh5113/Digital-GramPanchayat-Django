@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/style_deathcert.css">
+    <link rel="shortcut icon" href="/static/media/death-certificate.png" type="image/x-icon">
+
+
+</head>
+<body>
+    <div class="certificate">
+        {% for i in death_data %}
+        <div class="header">
+            <div class="title">DEATH CERTIFICATE</div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                This is to certify that following data has been collected from record
+                of Death as filled.
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Name: {{ i.deceased_name }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Gender: {{ i.gender }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Father's/Husband Name: {{ i.deceased_fname }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Mother's Name: {{ i.deceased_mname }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+                Date of Death: {{ i.date_of_death }}
+            </div>
+        </div>
+        <div class="section">
+            <div class="person-info">
+               Permanent Address of Deceased: {{ i.deceased_address }}
+            </div>
+        </div>
+        <div class="certified">
+            <div class="person-info">Certified by: <img src="/static/media/sign.png" alt="not found"></div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="print">
+        <button class="button" onclick="handlePrint()">Print</button>
+    </div>
+    <script> const handlePrint= () => { var actContents=document.body.innerHTML; document.body.innerHTML=actContents; window.print(); }
+    </script>
+    
+</body>
+
+</html>
