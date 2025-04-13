@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birth Registration Form</title>
+    <link rel="shortcut icon" href="/static/media/birth-certificate.png" type="image/x-icon">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        section {
+            background-color: #fff;
+            width: 95%;
+            max-width: 900px;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease;
+        }
+
+        .title h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container > div:first-child {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-box, .gender_details, .placeofbirth, .additional {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details, .gender-title, .place, .mot-edu, .mot-occ, .fat-edu, .fat-occ {
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .required {
+            color: red;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            outline: none;
+            transition: 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 8px rgba(102, 166, 255, 0.3);
+            background-color: #fff;
+        }
+
+        .onlyadditionalinfo .title hr {
+            border: none;
+            border-top: 2px solid #66a6ff;
+            margin: 10px 0;
+        }
+
+        .onlyadditionalinfo .title b {
+            display: block;
+            font-size: 18px;
+            color: #444;
+        }
+
+        .button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .button input[type="submit"] {
+            background: #66a6ff;
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .button input[type="submit"]:hover {
+            background: #4d91f7;
+            transform: scale(1.03);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .user-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="title">
+            <h1><b>Birth Registration Form</b></h1>
+        </div>
+        <div class="container">
+            <div><span class="required">*</span><u>Mandatory Fields</u></div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Date of Birth<span class="required">*</span></span>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Name of Child</span>
+                        <input type="text" name="name" pattern="[A-Za-z]+" title="Only alphabets are allowed" required>
+                    </div>
+                    <div class="gender_details">
+                        <span class="gender-title">Gender<span class="required">*</span></span>
+                        <select name="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Father's Name<span class="required">*</span></span>
+                        <input type="text" name="fname" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Mother's Name<span class="required">*</span></span>
+                        <input type="text" name="mname" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">District Name<span class="required">*</span></span>
+                        <input type="text" name="dname" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+                    </div>
+                    <div class="placeofbirth">
+                        <span class="place">Place of Birth<span class="required">*</span></span>
+                        <select name="place" required>
+                            <option value="home">Home</option>
+                            <option value="government hospital">Government Hospital</option>
+                            <option value="private hospital">Private Hospital</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Birth Place Address<span class="required">*</span></span>
+                        <input type="text" name="baddress" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Current Address<span class="required">*</span></span>
+                        <input type="text" name="caddress" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Permanent Address<span class="required">*</span></span>
+                        <input type="text" name="paddress" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email<span class="required">*</span></span>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Mobile Number<span class="required">*</span></span>
+                        <input type="number" name="mobile" required>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="onlyadditionalinfo">
+                        <div class="title">
+                            <hr><b><center>Additional Details</center></b>
+                        </div><br>
+                        <div class="additional">
+                            <span class="mot-edu">Mother's Education</span>
+                            <select name="motedu">
+                                <option value="literate">Literate</option>
+                                <option value="illiterate">Illiterate</option>
+                            </select>
+                        </div>
+                        <div class="additional">
+                            <span class="mot-occ">Mother's Occupation</span>
+                            <select name="motocc">
+                                <option value="housewife">House-Wife</option>
+                                <option value="employee">Employee</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="additional">
+                            <span class="fat-edu">Father's Education</span>
+                            <select name="fatedu">
+                                <option value="literate">Literate</option>
+                                <option value="illiterate">Illiterate</option>
+                            </select>
+                        </div>
+                        <div class="additional">
+                            <span class="fat-occ">Father's Occupation</span>
+                            <select name="fatocc">
+                                <option value="employee">Employee</option>
+                                <option value="unemployed">Unemployed</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div><br>
+                        <div class="additional">
+                            <span class="details">Mother's Age at Marriage</span>
+                            <input type="number" name="mar_age" required>
+                        </div>
+                        <div class="additional">
+                            <span class="details">Mother's Age at Delivery</span>
+                            <input type="number" name="del_age" required>
+                        </div>
+                    </div>
+
+                    <!-- Final Info -->
+                    <div class="input-box">
+                        <span class="details">Date</span>
+                        <input type="date" name="date" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Applicant Name</span>
+                        <input type="text" name="app_name" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

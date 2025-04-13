@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Integrated Health Care</title>
+  <style>
+    @keyframes fadeIn {
+      from {opacity: 0;} to {opacity: 1;}
+    }
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(40px);} to {opacity: 1; transform: translateY(0);}
+    }
+
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background: #f7f9fc; color: #2e3d49; scroll-behavior: smooth;">
+
+  <!-- Header -->
+  <header style="background: linear-gradient(90deg, #5c6bc0, #42a5f5); color: white; padding: 25px; text-align: center; font-size: 30px; font-weight: bold; animation: fadeIn 1s;">
+    Integrated Health Care Center
+  </header>
+
+  <!-- Human Health -->
+  <section style="padding: 40px 20px; background: #e8f0fe; animation: fadeInUp 1s;">
+    <h2 style="text-align: center; color: #3f51b5; font-size: 28px;">Human Health</h2>
+
+    <!-- Location & Features -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #3949ab;">📍 Location & Features</h3>
+      <p style="line-height: 1.8;">
+        Centrally located with modern equipment, our Human Health Unit provides 24/7 emergency care, diagnostics, specialists, and accessible service to all communities.
+      </p>
+    </div>
+
+    <!-- Doctors Info -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #3949ab;">👨‍⚕️ Doctors Information</h3>
+      <div class="card-container" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <div class="card" style="background: #c5cae9; padding: 20px; border-radius: 12px; width: 250px; text-align: center;">
+          <img src="https://via.placeholder.com/150" alt="Dr. Ahuja" style="width: 100%; border-radius: 8px;">
+          <h4 style="color: #1a237e; margin: 10px 0 5px;">Dr. Ahuja</h4>
+          <p>General Physician</p>
+        </div>
+        <div class="card" style="background: #c5cae9; padding: 20px; border-radius: 12px; width: 250px; text-align: center;">
+          <img src="https://via.placeholder.com/150" alt="Dr. Mehta" style="width: 100%; border-radius: 8px;">
+          <h4 style="color: #1a237e; margin: 10px 0 5px;">Dr. Mehta</h4>
+          <p>Cardiologist</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Health News -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #3949ab;">📰 Health News</h3>
+      <ul style="line-height: 2;">
+        <li>🩺 Free diabetes screening camp for seniors in April 2025.</li>
+        <li>🧠 Launch of AI-assisted diagnostics for early detection of cancer.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Animal Health -->
+  <section style="padding: 40px 20px; background: #f1f8e9; animation: fadeInUp 1.2s;">
+    <h2 style="text-align: center; color: #558b2f; font-size: 28px;">Animal Health</h2>
+
+    <!-- Location & Features -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #33691e;">📍 Location & Features</h3>
+      <p style="line-height: 1.8;">
+        Our Animal Health Unit is next to the main center and features grooming, surgery, vaccinations, and emergency services with a pet-friendly environment.
+      </p>
+    </div>
+
+    <!-- Animal Vaccination -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #33691e;">💉 Animal Vaccination Schedule</h3>
+      <ul style="line-height: 2;">
+        <li>🐶 Rabies – Yearly</li>
+        <li>🐱 Feline Leukemia – Annually</li>
+        <li>🦮 Canine Distemper – Every 3 Years</li>
+        <li>🐾 Parvovirus – Yearly</li>
+      </ul>
+    </div>
+
+    <!-- Veterinarians -->
+    <div style="margin-top: 30px;">
+      <h3 style="color: #33691e;">👩‍⚕️ Veterinarians</h3>
+      <div class="card-container" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <div class="card" style="background: #dcedc8; padding: 20px; border-radius: 12px; width: 250px; text-align: center;">
+          <img src="https://via.placeholder.com/150" alt="Dr. Raj" style="width: 100%; border-radius: 8px;">
+          <h4 style="color: #2e7d32; margin: 10px 0 5px;">Dr. Raj</h4>
+          <p>Veterinary Surgeon</p>
+        </div>
+        <div class="card" style="background: #dcedc8; padding: 20px; border-radius: 12px; width: 250px; text-align: center;">
+          <img src="https://via.placeholder.com/150" alt="Dr. Neha" style="width: 100%; border-radius: 8px;">
+          <h4 style="color: #2e7d32; margin: 10px 0 5px;">Dr. Neha</h4>
+          <p>Animal Nutritionist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

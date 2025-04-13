@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Death Registration</title>
+  <link rel="shortcut icon" href="/static/media/death-certificate.png" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #2d2d2d, #4b4b4b);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 15px;
+    }
+
+    section {
+      width: 100%;
+      max-width: 900px;
+      background: #1f1f1f;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      animation: fadeIn 1s ease;
+    }
+
+    .title h2 {
+      font-size: 2rem;
+      text-align: center;
+      color: #00ffe1;
+      margin-bottom: 30px;
+    }
+
+    .heading {
+      font-size: 1.3rem;
+      color: #00e6a9;
+      margin: 20px 0 10px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .input-box, .gender_details, .religion {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .details {
+      font-size: 1rem;
+      margin-bottom: 5px;
+      color: #ccc;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: none;
+      background: #2e2e2e;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      background: #3a3a3a;
+      box-shadow: 0 0 0 2px #00ffe1;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    .button {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .button input[type="submit"] {
+      background: #00ffe1;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .button input[type="submit"]:hover {
+      background: #00e6a9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 255, 225, 0.4);
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #555;
+      margin: 20px 0;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      section {
+        padding: 20px;
+      }
+
+      .title h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="title"><h2>Death Registration Form</h2></div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="container">
+        <div class="info">
+          <div class="heading">Applicant/Informer Details</div>
+          <div class="input-box">
+            <span class="details">Name*</span>
+            <input type="text" name="name" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Relation with Deceased</span>
+            <input type="text" name="dec_rel" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Mobile Number</span>
+            <input type="number" name="dec_mob">
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="heading">Deceased Details</div>
+        <div class="deceased-details">
+          <div class="input-box">
+            <span class="details">Date of Death*</span>
+            <input type="date" name="dod" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Deceased Name*</span>
+            <input type="text" name="dec_name" pattern="[A-Za-z ]+" title="Only alphabets are allowed" required>
+          </div>
+          <div class="gender_details">
+            <span class="details">Gender*</span>
+            <select name="gender" required>
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Father's Name*</span>
+            <input type="text" name="dec_fat" pattern="[A-Za-z ]+" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Mother's Name*</span>
+            <input type="text" name="dec_mot" pattern="[A-Za-z ]+" required>
+          </div>
+          <div class="religion">
+            <span class="details">Religion*</span>
+            <select name="rel" required>
+              <option value="">Select</option>
+              <option value="hindu">Hindu</option>
+              <option value="muslim">Muslim</option>
+              <option value="shikh">Shikh</option>
+              <option value="christian">Christian</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Age at Death*</span>
+            <input type="number" name="dec_death" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Actual Cause of Death*</span>
+            <textarea name="dec_cause" rows="4" required></textarea>
+          </div>
+          <div class="input-box">
+            <span class="details">Permanent Address of Deceased*</span>
+            <input type="text" name="dec_add" required>
+          </div>
+        </div>
+
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </div>
+    </form>
+  </section>
+</body>
+</html>

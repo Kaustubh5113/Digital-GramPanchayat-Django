@@ -1,0 +1,150 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header and Navigation */
+header {
+    background: #00509e;
+    color: white;
+    padding: 10px 20px;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+header .nav-links li {
+    margin: 0 10px;
+}
+
+header .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+header .nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Google Translate Element */
+#google_translate_element {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+}
+
+/* Main Contact Form Section */
+.conform {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.conform h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.conform .alert{
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.conform .alert-success{
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;  
+}
+
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact-info1,
+.contact-form1 {
+    flex: 1 1 45%;
+    margin: 10px;
+}
+
+/* Contact Information */
+.contact-info1 h3 {
+    margin: 10px 0;
+    color: #00509e;
+}
+
+.contact-info1 p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+/* Contact Form */
+.contact-form1 .form_group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.contact-form1 .form_field1 {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form1 .form_label1 {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    font-size: 0.9rem;
+    color: #00509e;
+    background: white;
+    padding: 0 5px;
+}
+
+.contact-form1 textarea {
+    resize: none;
+}
+
+.contact-form1 .btn1 {
+    background: #00509e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.contact-form1 .btn1:hover {
+    background: #003f7e;
+}
+ 
+
+

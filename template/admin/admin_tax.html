@@ -1,0 +1,95 @@
+<!-- tax_dashboard.html -->
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="header">
+  <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+  <h1 class="header-heading">eGram Panchayat Services</h1>
+  <div class="img-right">
+    <a href ="https://swachhbharatmission.ddws.gov.in/"><img src="/static/media/sw.png" alt="logo" class="image"><a/>
+    <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+    <div></div>
+    <script>
+      function loadGoogleTranslate() {
+        const script = document.createElement('script');
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(script);
+      }
+
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGoogleTranslate();
+      });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+    </script>
+  </div>
+</div>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+    
+  <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 30px; padding: 20px; width: 250px; text-align: center;">
+      <img src="../static/media/hometaxd.jpg" alt="Web Development" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">Home Tax</h3>
+      <p style="color: #555;">See Status</p>
+      <a href="{% url 'home_taxsection' %}"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Click To open</button>
+      </a>
+    </div>
+    <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 30px; padding: 20px; width: 250px; text-align: center;">
+      <img src="../static/media/watertax.jpg" alt="Web Development" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">Water Tax</h3>
+      <p style="color: #555;">See Status</p<!DOCTYPE html>
+  
+      <a href="{% url 'transactions' %}"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Click To open</button>
+      </a>
+    </div>
+    <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 30px; padding: 20px; width: 250px; text-align: center;">
+      <img src="../static/media/businesstax.jpg" alt="Web Development" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">Business Tax</h3>
+      <p style="color: #555;">See Status</p>
+      <a href="#"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Click To open</button>
+      </a>
+    </div>
+    <div style="background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 30px; padding: 20px; width: 250px; text-align: center;">
+      <img src="../static/media/electric.jpg" alt="Web Development" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
+      <h3 style="font-size: 1.5rem; color: #333;">electric Tax</h3>
+      <p style="color: #555;">See Status</p>
+      <a href="https://wss.mahadiscom.in/wss/wss?uiActionName=getViewPayBill"><button style="background-color: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1rem;">Click To open</button>
+      </a>
+    </div>
+  </div>
+  <script>
+      fetch('https://example.com/api/get-tax-records')  
+          .then(response => response.json())
+          .then(data => {
+              const taxRecordsTable = document.getElementById('taxRecords');
+              data.forEach(record => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+                      <td>${record.taxType}</td>
+                      <td>${record.currentAmount}</td>
+                      <td>${record.previousAmount}</td>
+                      <td>${record.status}</td>
+                  `;
+                  taxRecordsTable.appendChild(row);
+              });
+          })
+          .catch(error => console.error('Error fetching tax records:', error));
+      function payAllTaxes() {
+          alert('Initiating payment for all tax records');
+      }
+  </script>
+{% endblock %}

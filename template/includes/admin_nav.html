@@ -1,0 +1,61 @@
+<!-- templates/includes/navbar.html -->
+<nav>
+    <div class="sidebar-header">
+      <a class="logo-wrapper">
+        <img src="/static/media/logo.png" alt="Logo">
+        <h4 class="hidden">GRAM PANCHAYAT</h4>
+      </a>
+      <button class="toggle-btn">
+        <img src="/static/svg/menu.svg" alt="expand button">
+      </button>
+    </div>
+  
+    <div class="sidebar-links">
+      <a href="{% url 'admin_menu' %}" class="link">
+        <img src="/static/svg/house-door.svg" alt="">
+        <span class="hidden">Home</span>
+      </a>
+      <a href="{% url 'tax' %}" class="link">
+        <img src="/static/svg/cash.svg" alt="">
+        <span class="hidden">Tax</span>
+      </a>
+      <a href="#" class="link">
+        <img src="/static/svg/calendar-event.svg" alt="">
+        <span class="hidden">Events</span>
+      </a>
+      <a href="#" class="link">
+        <img src="/static/svg/certificate.svg" alt="">
+        <span class="hidden">Certificates</span>
+      </a>
+      <a href="#" class="link">
+        <img src="/static/svg/mycer.svg" alt="">
+        <span class="hidden">My Certificates</span>
+      </a>
+      <a href="{% url 'complaint' %}" class="link">
+        <img src="/static/svg/complaint.svg" alt="">
+        <span class="hidden">Complaint</span>
+      </a>
+      <a href="{% url 'my_complaint' %}" class="link">
+        <img src="/static/svg/mycomplaint.svg" alt="">
+        <span class="hidden">MyComplaints</span>
+      </a>
+    </div>
+  
+    <div class="sidebar-bottom">
+      <div class="sidebar-links">
+        <a href="{% url 'logout' %}" class="link">
+          <img src="/static/svg/logout.svg" alt="">
+          <span class="hidden">LogOut</span>
+        </a>
+      </div>
+      <div class="user-profile">
+        <div class="user-avatar">
+          <img src="/static/media/profile.png" alt="">
+        </div>
+        <div class="user-details hidden">
+          <p class="username">{{ request.user }}</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

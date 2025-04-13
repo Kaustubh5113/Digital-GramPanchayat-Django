@@ -1,0 +1,107 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Page title styling */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5rem;
+    color: #0056b3;
+}
+
+/* Complaint section styling */
+.comp-section {
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures no double borders */
+    margin: 10px 0;
+    font-size: 1rem;
+    text-align: left;
+    border: 1px solid #ddd; /* Adds a border around the table */
+}
+
+/* Header row styling */
+.heading th {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px;
+    border: 1px solid #ddd; /* Adds border to header cells */
+}
+
+/* Data rows styling */
+.complaints td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Adds border to table cells */
+}
+
+/* Alternate row background color */
+.complaints:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect for table rows */
+.complaints:hover {
+    background-color: #e9ecef;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .comp-section {
+        width: 95%;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+}
+
+/* General status styles */
+td.status-pending {
+    color: red;
+    font-weight: bold;
+}
+
+td.status-resolved {
+    color: green;
+    font-weight: bold;
+}
+
+td.status-progress {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Optional: Add hover effect for table rows */
+.complaints:hover td {
+    background-color: #e9ecef;
+}
+
+/* Style for delete buttons */
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}

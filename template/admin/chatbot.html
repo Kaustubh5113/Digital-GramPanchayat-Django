@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Grampanchayat Chatbot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f1f5f8;
+      height: 100vh;
+    }
+
+    /* Floating Chat Icon */
+    #chat-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4CAF50;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 999;
+      transition: transform 0.3s;
+    }
+
+    #chat-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* Chat Container */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      max-height: 500px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeInUp 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Chat Header */
+    .chat-header {
+      background: #4CAF50;
+      color: white;
+      padding: 15px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+    }
+
+    #chatbox {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin: 10px 0;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .user {
+      text-align: right;
+      color: #1565c0;
+    }
+
+    .bot {
+      text-align: left;
+      color: #2e7d32;
+    }
+
+    #inputArea {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    #user_input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px;
+      margin-left: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .option-button {
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      color: #2e7d32;
+      margin: 6px 6px 0 0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .option-button:hover {
+      background: #c8e6c9;
+    }
+
+    .options-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+<div id="chat-icon" onclick="toggleChat()">💬</div>
+
+<div id="chat-container">
+  <div class="chat-header">
+    Digital Grampanchayat Bot
+    <button class="close-btn" onclick="toggleChat()">×</button>
+  </div>
+  <div id="chatbox">
+    <div class="message bot">Hello! How can I help you today?</div>
+  </div>
+  <div id="inputArea">
+    <input type="text" id="user_input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  showMainOptions();
+});
+
+function toggleChat() {
+  const container = document.getElementById("chat-container");
+  const chatbox = document.getElementById("chatbox");
+  if (container.style.display === "flex") {
+    container.style.display = "none";
+  } else {
+    container.style.display = "flex";
+    setTimeout(() => chatbox.scrollTop = chatbox.scrollHeight, 100);
+  }
+}
+
+function sendMessage() {
+  const userInput = document.getElementById("user_input");
+  const chatbox = document.getElementById("chatbox");
+  const message = userInput.value;
+
+  if (message.trim() === "") return;
+
+  chatbox.innerHTML += `<div class="message user">${message}</div>`;
+
+  fetch("/chatbot/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: message }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    displayBotReply(data.reply);
+  });
+
+  userInput.value = "";
+}
+
+function displayBotReply(reply) {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div class="message bot">${reply}</div>`;
+
+  if (reply.includes("Here is the information") || reply.includes("documents")) {
+    chatbox.innerHTML += `
+      <div class="options-container">
+        <button class="option-button" onclick="restartChat()">Find More</button>
+      </div>`;
+  }
+
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function showMainOptions() {
+  const chatbox = document.getElementById("chatbox");
+  const optionsHTML = `
+    <div class="options-container">
+      <button class="option-button" onclick="selectMainOption('Birth Certificate')">Birth Certificate</button>
+      <button class="option-button" onclick="selectMainOption('Death Certificate')">Death Certificate</button>
+      <button class="option-button" onclick="selectMainOption('Tax Payment')">Tax Payment</button>
+      <button class="option-button" onclick="selectMainOption('Complaint Registration')">Complaint Registration</button>
+      <button class="option-button" onclick="selectMainOption('Website Overview')">Website Overview</button>
+    </div>`;
+  chatbox.innerHTML += optionsHTML;
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function selectMainOption(option) {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div class="message user">${option}</div>`;
+
+  let subOptionsHTML = '<div class="options-container">';
+  switch(option) {
+    case "Birth Certificate":
+      subOptionsHTML += `
+        <button class="option-button" onclick="selectSubOption('How to apply for birth certificate?')">How to apply?</button>
+        <button class="option-button" onclick="selectSubOption('What information is needed for birth certificate?')">Needed Info</button>
+        <button class="option-button" onclick="selectSubOption('What documents are needed for birth certificate?')">Documents</button>`;
+      break;
+    case "Death Certificate":
+      subOptionsHTML += `
+        <button class="option-button" onclick="selectSubOption('How to apply for death certificate?')">How to apply?</button>
+        <button class="option-button" onclick="selectSubOption('What info is needed for death certificate?')">Needed Info</button>
+        <button class="option-button" onclick="selectSubOption('What documents are needed for death certificate?')">Documents</button>`;
+      break;
+    case "Tax Payment":
+      subOptionsHTML += `
+        <button class="option-button" onclick="selectSubOption('How to pay property tax?')">How to pay?</button>
+        <button class="option-button" onclick="selectSubOption('What details required for tax payment?')">Details Required</button>`;
+      break;
+    case "Complaint Registration":
+      subOptionsHTML += `
+        <button class="option-button" onclick="selectSubOption('How to register a complaint?')">How to Register?</button>
+        <button class="option-button" onclick="selectSubOption('What complaints can I raise?')">Types of Complaints</button>`;
+      break;
+    case "Website Overview":
+      subOptionsHTML += `
+        <button class="option-button" onclick="selectSubOption('What services does the website offer?')">Services</button>
+        <button class="option-button" onclick="selectSubOption('How to navigate the website?')">Navigation Guide</button>`;
+      break;
+  }
+  subOptionsHTML += '</div>';
+  chatbox.innerHTML += subOptionsHTML;
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function selectSubOption(question) {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML += `<div class="message user">${question}</div>`;
+
+  let answer = "Here is the information you requested.";
+  if (question.includes("How to apply for birth certificate")) {
+    answer = "To apply for a birth certificate, go to the 'Birth Registration' section, fill out the form, and submit it.";
+  } else if (question.includes("What information is needed for birth certificate")) {
+    answer = "You need the child's name, date of birth, place of birth, and parent details.";
+  } else if (question.includes("What documents are needed for birth certificate")) {
+    answer = "You need hospital records, ID proof of parents, and address proof.";
+  } else if (question.includes("Website offer")) {
+    answer = "The website offers services like certificate registration, tax payments, complaint handling, and document management.";
+  } else if (question.includes("navigate the website")) {
+    answer = "Use the top menu or homepage tiles to access services. Each section is clearly labeled for ease.";
+  }
+
+  displayBotReply(answer);
+}
+
+function restartChat() {
+  const chatbox = document.getElementById("chatbox");
+  chatbox.innerHTML = `<div class="message bot">Hello! How can I help you today?</div>`;
+  showMainOptions();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div id="chatbot-wrapper">
+  <button id="chatbot-icon">
+    <i class="fas fa-comment-dots"></i>
+  </button>
+  <div id="chatbot-container">
+    <div id="chatbot-header">
+      Digital Grampanchayat
+      <button id="close-chat"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="chatbox">
+      <div class="message bot">👋 Hello! How can I help you today?</div>
+      <div class="chat-options" id="main-options">
+        <button onclick="selectOption('birth')">Birth Certificate</button>
+        <button onclick="selectOption('death')">Death Certificate</button>
+        <button onclick="selectOption('tax')">Tax Payment</button>
+        <button onclick="selectOption('complaint')">Complaint Registration</button>
+        <button onclick="selectOption('overview')">Website Overview</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #chatbot-wrapper * {
+    box-sizing: border-box;
+  }
+
+  #chatbot-wrapper #chatbot-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color:rgb(37, 110, 194);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+
+  #chatbot-wrapper #chatbot-icon:hover {
+    transform: scale(1.1);
+  }
+
+  #chatbot-wrapper #chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeInUp 0.3s ease;
+    z-index: 1001;
+  }
+
+  @keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  #chatbot-wrapper #chatbot-header {
+    background-color:rgb(54, 136, 209);
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #chatbot-wrapper #chatbox {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+  }
+
+  #chatbot-wrapper .message {
+    margin: 8px 0;
+    animation: fadeIn 0.3s ease;
+  }
+
+  #chatbot-wrapper .user {
+    text-align: right;
+    color: #007BFF;
+  }
+
+  #chatbot-wrapper .bot {
+    text-align: left;
+    color: #333;
+  }
+
+  #chatbot-wrapper .chat-options button {
+    margin: 5px 3px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e0f5e9;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #chatbot-wrapper .chat-options button:hover {
+    background-color: #c8edd8;
+  }
+
+  #chatbot-wrapper #close-chat {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const chatbotIcon = document.querySelector("#chatbot-wrapper #chatbot-icon");
+  const chatbotContainer = document.querySelector("#chatbot-wrapper #chatbot-container");
+  const closeChat = document.querySelector("#chatbot-wrapper #close-chat");
+  const chatbox = document.querySelector("#chatbot-wrapper #chatbox");
+
+  chatbotIcon.onclick = () => {
+    chatbotContainer.style.display = "flex";
+    chatbotIcon.style.display = "none";
+  };
+
+  closeChat.onclick = () => {
+    chatbotContainer.style.display = "none";
+    chatbotIcon.style.display = "block";
+  };
+
+  function selectOption(option) {
+    const subOptions = {
+      birth: [
+        { text: "How to apply for Birth Certificate?", reply: "Fill out the online form and upload hospital proof, ID, etc." },
+        { text: "Documents required?", reply: "Hospital letter, parent's ID, and address proof." }
+      ],
+      death: [
+        { text: "How to apply for Death Certificate?", reply: "Submit the form with medical certificate, ID, and relationship proof." },
+        { text: "Documents needed?", reply: "Medical certificate, deceased's ID, your ID." }
+      ],
+      tax: [
+        { text: "How to pay tax?", reply: "Go to the Tax section and pay using UPI or net banking." },
+        { text: "What if payment fails?", reply: "Re-upload the receipt or contact support." }
+      ],
+      complaint: [
+        { text: "How to file a complaint?", reply: "Go to Complaint section, fill the form with issue details." },
+        { text: "How to check status?", reply: "Go to 'My Complaints' to see updates and admin feedback." }
+      ],
+      overview: [
+        { text: "What is Digital Grampanchayat?", reply: "A digital portal for rural citizens to access services." },
+        { text: "What services are offered?", reply: "Birth/Death Certificates, Taxes, Complaints, etc." }
+      ]
+    };
+
+    chatbox.innerHTML += `<div class="message user">${option} Certificate</div>`;
+    let html = `<div class="chat-options">`;
+
+    subOptions[option].forEach((q) => {
+      html += `<button onclick="showReply('${q.reply}')">${q.text}</button>`;
+    });
+
+    html += `</div>`;
+    chatbox.innerHTML += `<div class="message bot">${html}</div>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  function showReply(reply) {
+    chatbox.innerHTML += `<div class="message user">Clicked</div>`;
+    chatbox.innerHTML += `<div class="message bot">${reply}</div>`;
+    chatbox.innerHTML += `<div class="chat-options"><button onclick="resetChat()">Find More</button></div>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+
+  function resetChat() {
+    chatbox.innerHTML = `
+      <div class="message bot">👋 Hello! How can I help you today?</div>
+      <div class="chat-options" id="main-options">
+        <button onclick="selectOption('birth')">Birth Certificate</button>
+        <button onclick="selectOption('death')">Death Certificate</button>
+        <button onclick="selectOption('tax')">Tax Payment</button>
+        <button onclick="selectOption('complaint')">Complaint Registration</button>
+        <button onclick="selectOption('overview')">Website Overview</button>
+      </div>`;
+    chatbox.scrollTop = 0;
+  }
+</script>

@@ -1,0 +1,84 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; 
+    color: #333;
+    line-height: 1.6;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+    color: #444;
+}
+
+table {
+    margin: 20px auto; 
+    border-collapse: collapse;
+    width: 90%; /* Adjust width for responsiveness */
+    max-width: 1200px; /* Restricts maximum width */
+    background: #fff;
+    border: 2px solid #000; /* Black border for the main table */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Headers */
+thead th {
+    background-color: #124b87; /* Blue header background */
+    color: #fff; /* White text for header */
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    border: 2px solid #000; /* Black border for headers */
+}
+
+/* Table Data Cells */
+tbody td {
+    padding: 10px;
+    text-align: left;
+    border: 2px solid #000; /* Black border for data cells */
+    vertical-align: top;
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Inner Tables Styling */
+table table {
+    width: 100%; /* Inner tables occupy full width */
+    border-collapse: collapse;
+    margin: 0;
+    background: #fff;
+}
+
+table table th,
+table table td {
+    border: 1px solid #000; /* Black border for inner table cells */
+    padding: 5px;
+    font-size: 14px; /* Smaller text for nested tables */
+}
+
+/* Add Hover Effect for Rows */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 100%; /* Full width for smaller screens */
+        font-size: 14px;
+    }
+
+    thead th {
+        font-size: 14px; /* Smaller header text */
+    }
+
+    tbody td {
+        font-size: 13px; /* Adjust text size for smaller screens */
+    }
+}

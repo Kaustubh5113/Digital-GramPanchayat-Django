@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Healthcare Services</h1>
+
+<h2>🏣 Health Centers</h2>
+<ul>
+    {% for center in centers %}
+        <li>{{ center.name }} - {{ center.type }} - {{ center.contact }}</li>
+    {% endfor %}
+</ul>
+
+<h2>📰 Health Awareness Posts</h2>
+<ul>
+    {% for post in posts %}
+        <li><strong>{{ post.title }}</strong>: {{ post.content }}</li>
+    {% endfor %}
+</ul>
+
+<h2>🚑 Emergency Contacts</h2>
+<ul>
+    {% for contact in contacts %}
+        <li>{{ contact.service_name }}: {{ contact.contact_number }}</li>
+    {% endfor %}
+</ul>
+
+<h2>📢 Medical Camps</h2>
+<ul>
+    {% for camp in camps %}
+        <li>{{ camp.title }} - {{ camp.date }} at {{ camp.location }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'submit_complaint' %}">📝 Report a Health Issue</a>
+{% endblock %}

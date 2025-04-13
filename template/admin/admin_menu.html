@@ -1,0 +1,227 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Admin Menu{% endblock %}
+
+{% block content %}
+<div class="header">
+  <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+  <h1 class="header-heading">eGram Panchayat Services</h1>
+  <div class="img-right">
+    <a href ="https://swachhbharatmission.ddws.gov.in/"><img src="/static/media/sw.png" alt="logo" class="image"><a/>
+    <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+    <div></div>
+    <script>
+      function loadGoogleTranslate() {
+        const script = document.createElement('script');
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(script);
+      }
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGoogleTranslate();
+      });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+    </script>
+   
+  </div>
+</div>
+
+{% if messages %}
+{% for message in messages %}
+<div
+  class="alert alert-{{ message.tags }} {% if message.tags == 'error' %}alert-danger{% endif %} alert-dismissible text-center"
+  role="alert" style="margin-left: 50px;">
+  <strong>{% if message.tags == "success" %}Success!{% elif message.tags == "error" %}Error!{% endif %}</strong> {{
+  message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<section>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <video class="d-block w-100" autoplay loop muted>
+              <source src="/static/media/village_video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          <div class="carousel-caption d-none d-md-block">
+              <h2>Greater the Power of Panchayats, the Better for the People.</h2>
+          </div>
+      </div>
+  
+      <!-- Second Image -->
+      {% comment %} <div class="carousel-item">
+          <img src="/static/media/slider1.png" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+              <h2>Rural Development With Technology</h2>
+          </div>
+      </div> {% endcomment %}
+  
+      <!-- Third Image -->
+      {% comment %} <div class="carousel-item">
+          <img src="/static/media/rural-farm.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+              <h2>Nurturing Nature, Nourishing Nations</h2>
+          </div>
+      </div> {% endcomment %}
+  </div>
+  
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+<section>
+  <div class="">
+    <h1 class="heading">Panchayat Members</h1>
+  </div>
+
+  <div class="members">
+    <div class="s1">
+      <!-- <div class="member-2"><img src="/static/media/panch2.jpg" alt="not-found"></div> -->
+    
+        <div class="member-1"><img src="../static/media/panch1.jpeg" alt=""></div>
+      
+    </div>
+    {% comment %} <div class="s1">
+    
+      <div class="member-1"><img src="../static/media/panch1.jpeg" alt=""></div>
+    </div> {% endcomment %}
+    <div class="s1">
+      <!-- <div class="member-2"><img src="/static/media/panch2.jpg" alt="not-found"></div> -->
+      <a href="{% url 'panchinfo' %}">
+        <div class="member-2"><img src="../static/media/panch2.jpeg" alt=""></div>
+      </a>
+    </div>
+    <div class="s1">
+      <a>
+        <div class="member-3"><img src="/static/media/panch3.jpeg" alt="not-found"></div>
+      </a>
+    </div>
+    <div class="s1">
+      <a>
+        <div class="member-4"><img src="/static/media/panch4.jpeg" alt="not-found"></div>
+      </a>
+    </div>
+    <div class="s1">
+      <a>
+        <div class="member-5"><img src="../static/media/panch6.jpeg" alt="not-found"></div>
+      </a>
+    </div>
+  </div>
+
+</section>
+<br><br><br>
+<section class="lower">
+  <div class="pop">
+    <h1>Total Population of Village</h1>
+    <div class="piechart"></div>
+    <div class="pie">
+      <button id="showPopulation" class="btn btn-primary">Show Village Population</button>
+      <div class="lightblue">
+        <div class="text">Male</div>
+      </div>
+      <div class="pink">
+        <div class="text">Female</div>
+      </div>
+    </div>
+  </div>
+  <div class="news">
+    <h3 class="news-heading">News and Notices</h3><br><br>
+
+    <marquee behavior="scroll" direction="up" scrollamount="2" onmouseover="this.stop();" onmouseout="this.start();">
+      <div class="news-item">1.Sachin Nag won India's first ever Gold medal in Men's 100m freestyle Swimming. <img
+          src="/static/media/new-gif-image.gif" style="float: none; width: 45px;" alt="">
+      </div>
+      <div class="news-item">2.India clinch New Zealand in semi-final,won by 70 runs. <img
+          src="/static/media/new-gif-image.gif" style="float: none; width: 45px;" alt="">
+      </div>
+      <div class="news-item">3.India won total 107 medals in Asian Games 2023.</div>
+      <div class="news-item">4.Need 5 labours for MNREGA.Pls visit Sarpanch.</div>
+    </marquee>
+  </div>
+</section>
+<br>
+
+<script>
+  document.getElementById('showPopulation').addEventListener('click', function () {
+    fetch('/get_population_data/')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('populationData').innerHTML = data;
+        new bootstrap.Modal(document.getElementById('populationModal')).show();
+      });
+  });
+
+  document.getElementById('populationForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    fetch('/update_population_data/', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      }
+    }).then(response => {
+      if (response.ok) {
+        alert("Updated Successfully!");
+        bootstrap.Modal.getInstance(document.getElementById('populationModal')).hide();
+      }
+    });
+  });
+</script>
+
+<div class="modal fade" id="populationModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Village Population Dashboard</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form id="populationForm">
+        <div class="modal-body" id="populationData">
+          <!-- Data loads here -->
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

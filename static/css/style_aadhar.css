@@ -1,0 +1,73 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+h3 {
+    text-align: center;
+    margin: 20px;
+    color: #555;
+}
+
+.aadhar-info {
+    max-width: 500px; /* Increased card size */
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align content */
+}
+
+.aadhar-info label {
+    display: block;
+    font-size: 18px; /* Larger label font size */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.aadhar-info input {
+    width: 90%; /* Occupies most of the card width */
+    padding: 15px; /* Increased padding for a bigger size */
+    margin-bottom: 20px;
+    font-size: 16px; /* Larger font for input text */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.aadhar-info button {
+    width: 90%; 
+    padding: 15px; 
+    background-color: #124b87;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px; /* Larger button text */
+    cursor: pointer;
+}
+
+.aadhar-info button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .aadhar-info {
+        max-width: 90%; /* Adjust card size for smaller screens */
+        padding: 20px;
+    }
+
+    .aadhar-info input,
+    .aadhar-info button {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    h3 {
+        font-size: 16px; /* Slightly smaller heading text */
+    }
+}

@@ -1,0 +1,65 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}Admin Menu{% endblock %}
+
+{% block content %}
+<div class="header">
+  <img src="/static/svg/emblem.svg" alt="emblem" class="img-left">
+  <h1 class="header-heading">eGram Panchayat Services</h1>
+  <div class="img-right">
+    <a href ="https://swachhbharatmission.ddws.gov.in/"><img src="/static/media/sw.png" alt="logo" class="image"><a/>
+    <i id="google_translate_element">Languages<i class="bi bi-translate"></i></i>
+    <div></div>
+    <script>
+      function loadGoogleTranslate() {
+        const script = document.createElement('script');
+        script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        document.body.appendChild(script);
+      }
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,mr,hi',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+          },
+          'google_translate_element'
+        );
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        loadGoogleTranslate();
+      });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,mr,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+      }
+    </script>
+   
+  </div>
+</div>
+
+<div style="max-width: 500px; margin: 50px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <h1 style="text-align: center; color: #333; margin-bottom: 20px;">Raise a Complaint</h1>
+  <form method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 15px;">
+      {% csrf_token %}
+      <label for="compl_type" style="font-weight: bold; color: #555;">Complaint Type:</label>
+      <input type="text" name="compl_type" id="compl_type" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+
+      <label for="compl_loc" style="font-weight: bold; color: #555;">Location:</label>
+      <input type="text" name="compl_loc" id="compl_loc" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;">
+
+      <label for="desc" style="font-weight: bold; color: #555;">Description:</label>
+      <textarea name="desc" id="desc" required style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px; height: 100px;"></textarea>
+
+      <label for="document" style="font-weight: bold; color: #555;">Document:</label>
+      <input type="file" name="document" id="document" style="padding: 5px;">
+
+      <button type="submit" style="padding: 12px; background-color: #007BFF; color: #fff; border: none; border-radius: 4px; font-size: 16px; cursor: pointer;width: 50px;">Submit</button>
+  </form>
+</div>
+
+
+
+{% endblock %}

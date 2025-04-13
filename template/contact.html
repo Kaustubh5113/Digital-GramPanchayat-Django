@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/media/contact-form.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/contact_form.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Contact</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <b>eGram Panchayat Pal</b>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'aadhar' %}">Services</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <div id="google_translate_element">Languages<img src="/static/svg/lang.svg" alt=""></div>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            const script = document.createElement('script');
+            script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,mr,hi',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'google_translate_element'
+            );
+        }
+
+        // Ensure the widget is reinitialized on every page load
+        document.addEventListener("DOMContentLoaded", function () {
+            loadGoogleTranslate();
+        });
+    </script>
+
+    <div class="conform">
+        <h1>Get in Touch</h1>
+        <div class="container1">
+            <div class="contact-info1">
+                <div class="contact_information1">
+                    <h3>Locations</h3>
+                    <p>Pal</p>
+                    <h3>Address</h3>
+                    <p>415014 Pal, Satara, Maharashtra</p>
+                    <h3>Phone</h3>
+                    <p>(+91) 9975xxxxxx</p>
+                    <h3>Mail</h3>
+                    <p>grampanchayatpal@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-form1">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form_group field1">
+                        <input type="input" class="form_field1" placeholder="Name" id="name" name="cont_name" required />
+                        <label for="name" class="form_label1">Name</label>
+                    </div>
+                    <div class="form_group field1">
+                        <input type="email" class="form_field1" placeholder="abc@example.com" id="email" name="cont_email" required />
+                        <label for="email" class="form_label1">Email</label>
+                    </div>
+                    <div class="form_group field1">
+                        <textarea class="form_field1" id="message" placeholder="Message" cols="30" rows="5" name="cont_message"
+                            required></textarea>
+                        <label for="message" class="form_label1">Message</label>
+                    </div>
+                    <br><br>
+
+                    {% if messages %}
+                        <div class="message-container">
+                            {% for message in messages %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <center><button class="btn1">Send</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Get Help</h4>
+                    <ul>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Certificates</h4>
+                    <ul>
+                        <li><a href="{% url 'aadhar' %}">Birth Certificate</a></li>
+                        <li><a href="{% url 'aadhar' %}">Death Certificate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="face"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/watch?v=CAeNWg2ksGw" class="linkdi"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.google.co.in/maps/place/Pali,+Maharashtra+415014/" class="face"><i class="fa-solid fa-map"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

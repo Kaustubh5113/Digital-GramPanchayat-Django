@@ -1,0 +1,93 @@
+/* Reset some basic styles */
+* {
+    margin: -4;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Container */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Title Styles */
+.title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.transaction-table th, .transaction-table td {
+    padding: 12px 15px;
+}
+
+.transaction-table th {
+    background-color: #114d8a;
+    color: white;
+}
+
+.transaction-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.transaction-table tr:hover {
+    background-color: #ddd;
+}
+
+/* Input Fields */
+.input-amount, .input-status, .input-date {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: none; /* Hide the border */
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.input-amount:focus, .input-status:focus, .input-date:focus {
+    outline: none;
+    background-color: #e6f7e6;
+}
+
+/* Button Styles */
+.send-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+    background-color: #0e488f;
+}
+
+.send-btn:active {
+    background-color: #3e568e;
+}
